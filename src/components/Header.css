@@ -1,0 +1,33 @@
+
+header{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.header-container{
+	margin: 0 auto;
+	padding: 0.5rem 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1200px;
+}
+
+nav{
+	display: flex;
+	align-items: center;
+}
+
+nav a{
+	margin: 0 1rem;
+}
+
+.button{
+	background-color: var(--dark-green);
+	padding: 0.3rem 0.6rem;
+	border-radius: 0.5rem;
+	border: solid 0.1rem var(--black);
+
+}
