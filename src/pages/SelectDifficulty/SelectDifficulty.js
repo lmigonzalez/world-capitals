@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SelectDifficulty.css";
 
 import { Button } from "react-bootstrap";
 function SelectDifficulty() {
   const [levelSelected, setLevelSelected] = useState("normal");
+  const navigate = useNavigate()
 
   const easyMode = () => {
     setLevelSelected("easy");
@@ -16,6 +18,10 @@ function SelectDifficulty() {
   const hardMode = () => {
     setLevelSelected("hard");
   };
+
+  const startQuiz = () =>{
+	navigate('/quiz')
+  }
 
   return (
     <section className="difficulty-container">
@@ -46,8 +52,7 @@ function SelectDifficulty() {
         </Button>
       </div>
 	  <div className="start-button">
-	  	<Button>Start</Button>
-
+	  	<Button onClick={startQuiz}>Start</Button>
 	  </div>
     </section>
   );

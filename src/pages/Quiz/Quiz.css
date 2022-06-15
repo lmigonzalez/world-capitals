@@ -1,0 +1,43 @@
+
+
+.quiz-container{
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	background-color: var(--light-green);
+	padding-top: 7rem;
+}
+
+.quiz-timer{
+	margin: 1rem 0;
+	width: 90%;
+	text-align: end;
+	font-size: 1.5rem;
+}
+
+.country-name{
+	margin: 1rem 0;
+
+}
+
+.quiz-choice{
+	display: flex;
+	flex-direction: column;
+}
+.quiz-choice button{
+	width: 20rem;
+	height: 3rem;
+	margin: 0.3rem 0;
+	font-size: 1.5rem;
+	background-color: var(--dark-green);
+	display: flex;
+	align-items: center;
+}
+
+.quiz-choice button div{
+	
+	pointer-events: none;
+}

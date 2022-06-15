@@ -1,0 +1,21 @@
+
+
+.progress-bar-container{
+	height: 1.5rem;
+	width: 90%;
+	margin: 0 auto;
+	background-color: var(--white);
+	border-radius: 1rem;
+	position: relative;
+}
+
+.progress-bar{
+	height: 1.5rem;
+	width: 5%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: var(--red);
+	border-radius: 1rem;
+	transition: linear 1s;
+}
