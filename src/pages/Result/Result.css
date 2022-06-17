@@ -78,3 +78,11 @@
 	background-color: var(--red);
 	margin-right: 1rem;
 }
+
+.correct-icon{
+	color: var(--dark-green);
+}
+
+.incorrect-icon{
+	color: var(--red);
+}
