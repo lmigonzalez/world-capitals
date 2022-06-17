@@ -3,12 +3,11 @@
 .quiz-container{
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
 	align-items: center;
 	width: 100%;
 	min-height: 100vh;
 	background-color: var(--light-green);
-	padding-top: 7rem;
+	padding-top: 2rem;
 }
 
 .quiz-timer{
@@ -40,4 +39,24 @@
 .quiz-choice button div{
 	
 	pointer-events: none;
+}
+
+.control-buttons{
+	/* background-color: black; */
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.control-buttons button{
+	width: 8rem;
+	height: 3rem;
+	margin: 0.3rem 0;
+	font-size: 1.5rem;
+	background-color: var(--dark-green);
+	
+}
+
+.control-buttons button:first-child{
+	background-color: var(--red);
 }

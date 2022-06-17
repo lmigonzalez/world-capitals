@@ -1,7 +1,7 @@
 
 
 .progress-bar-container{
-	height: 1.5rem;
+	height: 1.2rem;
 	width: 90%;
 	margin: 0 auto;
 	background-color: var(--white);
@@ -10,7 +10,7 @@
 }
 
 .progress-bar{
-	height: 1.5rem;
+	height: 1.2rem;
 	width: 5%;
 	position: absolute;
 	left: 0;

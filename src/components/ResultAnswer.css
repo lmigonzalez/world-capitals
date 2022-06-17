@@ -1,0 +1,18 @@
+
+
+.result-answer-container{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.result-answer-content{
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+}
+
+.number-country p{
+	display: inline-block;
+	margin: 0 0.2rem;
+}
