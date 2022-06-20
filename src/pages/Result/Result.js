@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Result.css";
 import { useNavigate } from "react-router-dom";
 import { BsCheckLg, BsXCircleFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
-
 
 import { useStateContext } from "../../context/StateContext";
 
@@ -11,45 +10,72 @@ function Result() {
   const { resultArray, setResultArray } = useStateContext();
   const navigate = useNavigate();
 
-  const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [resultPoints, setResultPoints] = useState(0)
-  let num = 0
+  //   const [correctAnswers, setCorrectAnswers] = useState(0)
+  //   const [resultPoints, setResultPoints] = useState(0)
+  //   let num = 0
 
-// let correctAnswers = 0
-// let resultPoints = 0
+//   useEffect(() => {
+//     getPoints();
+//     console.log("from useEffect");
+//   }, []);
 
-  useEffect(() =>{
-	  getPoints()
-  }, [])
+  const randomKeyNum = () => {
+    let key = Math.random() * 1000;
+
+    return key;
+  };
 
   const handleExit = () => {
     navigate("/");
   };
+
   const handleTryAgain = () => {
     navigate("/selectdifficulty");
   };
 
-  console.log(resultArray);
+  const answerAndPoints = () => {
+    let array = [];
+    let correctAnswers = 0;
+    let resultPoints = 0;
+    let num = 0;
 
-  const getPoints = () =>{
-	  for(let data of resultArray){
-		  if(data.yourAnswer === data.correctAnswer){
-			
-			num ++
-			  
-		  }
-	  }
+    for (let data of resultArray) {
+      if (data.yourAnswer === data.correctAnswer) {
+        num++;
+      }
+    }
 
-	  setCorrectAnswers(num)
-	  setResultPoints(num *  5)
-  }
+	correctAnswers += num
+	resultPoints = 5 * num
+	array.push(correctAnswers)
+	array.push(resultPoints)
 
+	return array
+  };
+
+  //   const getPoints = () =>{
+
+  // 	  for(let data of resultArray){
+  // 		  if(data.yourAnswer === data.correctAnswer){
+
+  // 			num ++
+
+  // 		  }
+  // 	  }
+
+  // 	  setCorrectAnswers(num)
+  // 	  setResultPoints(num *  5)
+  //   }
+
+  console.log(answerAndPoints());
+//   console.log(correctAnswers);
+//   console.log(resultPoints);
   return (
     <section className="result-container">
       <div className="result-content">
         <div className="result-details">
-          <p className="correct-result">{`${correctAnswers} from ${resultArray.length}`}</p>
-          <p>{`Points: ${resultPoints}`}</p>
+          <p className="correct-result">{`${answerAndPoints()[0]} from ${resultArray.length}`}</p>
+          <p>{`Points: ${answerAndPoints()[1]}`}</p>
         </div>
         <table className="result-table">
           <thead>
@@ -64,10 +90,13 @@ function Result() {
           <tbody>
             {resultArray.map((data) => {
               return (
-                <tr>
+                <tr key={randomKeyNum()}>
                   <td>
-					  {data.yourAnswer === data.correctAnswer ? <BsCheckLg className="correct-icon"/> : <BsXCircleFill className="incorrect-icon"/>}
-                    
+                    {data.yourAnswer === data.correctAnswer ? (
+                      <BsCheckLg className="correct-icon" />
+                    ) : (
+                      <BsXCircleFill className="incorrect-icon" />
+                    )}
                   </td>
                   <td> {data.country} </td>
                   <td> {data.yourAnswer} </td>

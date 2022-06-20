@@ -88,7 +88,10 @@ export const StateContext = ({ children }) => {
   ];
 
   const questions = originalArray
-  const selectedQuestions = questionToPlay(getRandomQuestions(), questions)
+
+
+  const [selectedQuestions, setSelectedQuestions] = useState(questionToPlay(getRandomQuestions(), questions))
+  
 
   const [progressBarWidth, setProgressBarWidth] = useState(20)
   const [resultArray, setResultArray] = useState([])
@@ -97,15 +100,19 @@ export const StateContext = ({ children }) => {
 	setProgressBarWidth(progressBarWidth + 20)
   }
 
-//  console.log(progressBarWidth)
+  const [timerNum, setTimerNum] = useState(20)
+
+//  console.log(resultArray)
 
   return <Context.Provider value={{
 	  selectedQuestions,
 	  progressBarWidth,
 	  resultArray,
+	  timerNum,
 	  setProgressBarWidth,
 	  percent,
 	  setResultArray,
+	  setTimerNum,
   }}>{children}</Context.Provider>;
 };
 

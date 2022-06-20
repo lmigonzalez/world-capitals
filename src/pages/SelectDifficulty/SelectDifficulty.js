@@ -2,21 +2,32 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SelectDifficulty.css";
 
+import { useStateContext } from "../../context/StateContext";
+
 import { Button } from "react-bootstrap";
-function SelectDifficulty() {
+
+const SelectDifficulty =()=> {
+
+  const {
+    setTimerNum,
+  } = useStateContext();
+
   const [levelSelected, setLevelSelected] = useState("normal");
   const navigate = useNavigate()
 
   const easyMode = () => {
     setLevelSelected("easy");
+    setTimerNum(30)
   };
 
   const normalMode = () => {
     setLevelSelected("normal");
+    setTimerNum(20)
   };
 
   const hardMode = () => {
     setLevelSelected("hard");
+    setTimerNum(10)
   };
 
   const startQuiz = () =>{
