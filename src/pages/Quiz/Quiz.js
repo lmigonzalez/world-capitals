@@ -17,34 +17,36 @@ function Quiz() {
     percent,
     resultArray,
     setResultArray,
-	timerNum,
+    timerNum,
   } = useStateContext();
 
   const [optionSelected, setOptionSelected] = useState(null);
   const [num, setNum] = useState(timerNum);
   const [questionNum, setQuestionNum] = useState(0);
   const [randomOpt, setRandomOpt] = useState([]);
-  let timer;
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [timer, setTimer] = useState()
 
-    useEffect(() => {
-      countDown();
-    }, [num]);
+
+  useEffect(() => {
+    countDown();
+  }, [num]);
 
   useEffect(() => {
     setResultArray([]);
     countDown();
-   
   }, []);
 
-  useEffect(()=>{
-	randomOption();
-  }, [questionNum])
+  useEffect(() => {
+    randomOption();
+	
+  }, [questionNum]);
 
   const countDown = () => {
     if (num > 0) {
-      timer = setTimeout(() => {
+      setTimer(setTimeout(() => {
         setNum(num - 1);
-      }, 1000);
+      }, 1000));
     }
 
     if (num === 0) {
@@ -58,59 +60,54 @@ function Quiz() {
     setProgressBarWidth(20);
   };
 
-
   const randomOption = () => {
-
-	let newArray = [];
-	let randomArray = getRandomOptions();
-	let options = [
-		selectedQuestions[questionNum].option1,
-		selectedQuestions[questionNum].option2,
-		selectedQuestions[questionNum].option3,
-		selectedQuestions[questionNum].option4,
-	];
-	randomArray.forEach((element) => {
-		newArray.push(options[element]);
-	});
-	setRandomOpt(newArray);
-
-};
-
-  const nextQuestion = () => {
-    let obj = {
-      country: selectedQuestions[questionNum].countryName,
-      yourAnswer: optionSelected,
-      correctAnswer: selectedQuestions[questionNum].correctAnswer,
-    };
-
-    setResultArray([...resultArray, obj]);
-
-    setOptionSelected(null);
-    //   console.log(questionNum)
-    if (questionNum === 4) {
-      navigate("/result");
-      setProgressBarWidth(20);
-      return;
-    }
-
-
-	setRandomOpt([])
-    setQuestionNum(questionNum + 1);
-    setNum(timerNum);
-    clearTimeout(timer);
-    percent();
-    randomOption();
+    let newArray = [];
+    let randomArray = getRandomOptions();
+    let options = [
+      selectedQuestions[questionNum].option1,
+      selectedQuestions[questionNum].option2,
+      selectedQuestions[questionNum].option3,
+      selectedQuestions[questionNum].option4,
+    ];
+    randomArray.forEach((element) => {
+      newArray.push(options[element]);
+    });
+    setRandomOpt(newArray);
   };
 
+  const nextQuestion = () => {
 
-  
-
+	  
+	  let obj = {
+		  country: selectedQuestions[questionNum].countryName,
+		  yourAnswer: optionSelected,
+		  correctAnswer: selectedQuestions[questionNum].correctAnswer,
+		};
+		
+		setResultArray([...resultArray, obj]);
+		
+		setOptionSelected(null);
+		if (questionNum === 4) {
+			navigate("/result");
+			setProgressBarWidth(20);
+			return;
+		}
+		
+		setRandomOpt([]);
+		setQuestionNum(questionNum + 1);
+		setNum(timerNum);
+		percent();
+		randomOption();
+		setButtonDisabled(true);
+		clearTimeout(timer);
+		console.log('clearTimeout')
+  };
 
   const selectOption = (e) => {
     let name = e.target.value;
     setOptionSelected(name);
+    setButtonDisabled(false);
   };
-
 
   return (
     <section className="quiz-container">
@@ -151,7 +148,9 @@ function Quiz() {
         </div>
         <div className="control-buttons">
           <Button onClick={handleExit}>Exit</Button>
-          <Button onClick={nextQuestion}>Next</Button>
+          <Button onClick={nextQuestion} disabled={buttonDisabled}>
+            Next
+          </Button>
         </div>
       </div>
     </section>

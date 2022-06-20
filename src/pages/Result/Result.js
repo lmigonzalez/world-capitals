@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect} from "react";
 import "./Result.css";
 import { useNavigate } from "react-router-dom";
 import { BsCheckLg, BsXCircleFill } from "react-icons/bs";
@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 import { useStateContext } from "../../context/StateContext";
 
 function Result() {
-  const { resultArray, setResultArray } = useStateContext();
+  const { resultArray, setResultArray, setSelectedQuestions } = useStateContext();
   const navigate = useNavigate();
 
   //   const [correctAnswers, setCorrectAnswers] = useState(0)
@@ -18,6 +18,10 @@ function Result() {
 //     getPoints();
 //     console.log("from useEffect");
 //   }, []);
+
+// useEffect(()=>{
+//   setSelectedQuestions()
+// }, [])
 
   const randomKeyNum = () => {
     let key = Math.random() * 1000;

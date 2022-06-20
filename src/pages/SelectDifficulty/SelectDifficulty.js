@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SelectDifficulty.css";
 
@@ -11,6 +11,10 @@ const SelectDifficulty =()=> {
   const {
     setTimerNum,
   } = useStateContext();
+
+  useEffect(() =>{
+    setTimerNum(20)
+  }, [])
 
   const [levelSelected, setLevelSelected] = useState("normal");
   const navigate = useNavigate()

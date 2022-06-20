@@ -113,6 +113,7 @@ export const StateContext = ({ children }) => {
 	  percent,
 	  setResultArray,
 	  setTimerNum,
+	  setSelectedQuestions,
   }}>{children}</Context.Provider>;
 };
 
