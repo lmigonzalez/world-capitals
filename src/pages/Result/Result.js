@@ -5,23 +5,20 @@ import { BsCheckLg, BsXCircleFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 
 import { useStateContext } from "../../context/StateContext";
+import { getRandomQuestions, questionToPlay } from "../../utilities/Utilities";
 
 function Result() {
-  const { resultArray, setResultArray, setSelectedQuestions } = useStateContext();
+  const { resultArray, setResultArray, setSelectedQuestions, questions, fetchQuestions } = useStateContext();
   const navigate = useNavigate();
 
-  //   const [correctAnswers, setCorrectAnswers] = useState(0)
-  //   const [resultPoints, setResultPoints] = useState(0)
-  //   let num = 0
-
-//   useEffect(() => {
-//     getPoints();
-//     console.log("from useEffect");
-//   }, []);
 
 // useEffect(()=>{
-//   setSelectedQuestions()
+//   setSelectedQuestions(questionToPlay(getRandomQuestions(), questions))
 // }, [])
+
+useEffect(()=>{
+  fetchQuestions()
+}, [])
 
   const randomKeyNum = () => {
     let key = Math.random() * 1000;
@@ -71,7 +68,7 @@ function Result() {
   // 	  setResultPoints(num *  5)
   //   }
 
-  console.log(answerAndPoints());
+  console.log(resultArray);
 //   console.log(correctAnswers);
 //   console.log(resultPoints);
   return (

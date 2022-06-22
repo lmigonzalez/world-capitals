@@ -14,14 +14,12 @@ function App() {
 
   const location = useLocation()
 
-  const { setProgressBarWidth } = useStateContext();
-
-
-
+  const { setProgressBarWidth, fetchQuestions } = useStateContext();
 
 
   useEffect(()=>{
     setProgressBarWidth(20)
+    fetchQuestions()
   }, [])
 
   return (

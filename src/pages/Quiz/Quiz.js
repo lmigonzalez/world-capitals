@@ -28,9 +28,9 @@ function Quiz() {
   const [timer, setTimer] = useState()
 
 
-  useEffect(() => {
-    countDown();
-  }, [num]);
+//   useEffect(() => {
+//     countDown();
+//   }, [num]);
 
   useEffect(() => {
     setResultArray([]);
@@ -75,13 +75,15 @@ function Quiz() {
     setRandomOpt(newArray);
   };
 
+ 
+
   const nextQuestion = () => {
 
 	  
 	  let obj = {
-		  country: selectedQuestions[questionNum].countryName,
+		  country: selectedQuestions[questionNum].country,
 		  yourAnswer: optionSelected,
-		  correctAnswer: selectedQuestions[questionNum].correctAnswer,
+		  correctAnswer: selectedQuestions[questionNum].correct_answer,
 		};
 		
 		setResultArray([...resultArray, obj]);
@@ -100,8 +102,10 @@ function Quiz() {
 		randomOption();
 		setButtonDisabled(true);
 		clearTimeout(timer);
-		console.log('clearTimeout')
   };
+
+  console.log(selectedQuestions)
+  console.log(questionNum)
 
   const selectOption = (e) => {
     let name = e.target.value;
@@ -109,13 +113,15 @@ function Quiz() {
     setButtonDisabled(false);
   };
 
+  console.log(resultArray)
+
   return (
     <section className="quiz-container">
       <ProgressBar />
       <div className="quiz-timer">{`0:${num}`}</div>
       <div className="quiz-content">
         <h2 className="country-name">
-          {selectedQuestions[questionNum].countryName}
+          {selectedQuestions[questionNum].country}
         </h2>
         <div className="quiz-choice">
           <Button value={randomOpt[0]} onClick={selectOption}>
