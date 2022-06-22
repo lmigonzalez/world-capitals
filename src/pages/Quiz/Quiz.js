@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 import ProgressBar from "../../components/ProgressBar";
+
 import { getRandomOptions } from "../../utilities/Utilities";
 
 import { useStateContext } from "../../context/StateContext";
 
 function Quiz() {
   const navigate = useNavigate();
+
+  
   const {
     selectedQuestions,
     setProgressBarWidth,
@@ -18,19 +21,20 @@ function Quiz() {
     resultArray,
     setResultArray,
     timerNum,
+    levelSelected,
   } = useStateContext();
+
+  
 
   const [optionSelected, setOptionSelected] = useState(null);
   const [num, setNum] = useState(timerNum);
   const [questionNum, setQuestionNum] = useState(0);
   const [randomOpt, setRandomOpt] = useState([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [timer, setTimer] = useState()
+  const [timer, setTimer] = useState();
 
-
-//   useEffect(() => {
-//     countDown();
-//   }, [num]);
+  
+ 
 
   useEffect(() => {
     setResultArray([]);
@@ -38,15 +42,22 @@ function Quiz() {
   }, []);
 
   useEffect(() => {
+    countDown();
+  }, [num]);
+
+  useEffect(() => {
     randomOption();
-	
   }, [questionNum]);
+
+
 
   const countDown = () => {
     if (num > 0) {
-      setTimer(setTimeout(() => {
-        setNum(num - 1);
-      }, 1000));
+      setTimer(
+        setTimeout(() => {
+          setNum(num - 1);
+        }, 1000)
+      );
     }
 
     if (num === 0) {
@@ -75,37 +86,33 @@ function Quiz() {
     setRandomOpt(newArray);
   };
 
- 
-
   const nextQuestion = () => {
+    let obj = {
+      country: selectedQuestions[questionNum].country,
+      yourAnswer: optionSelected,
+      correctAnswer: selectedQuestions[questionNum].correct_answer,
+    };
 
-	  
-	  let obj = {
-		  country: selectedQuestions[questionNum].country,
-		  yourAnswer: optionSelected,
-		  correctAnswer: selectedQuestions[questionNum].correct_answer,
-		};
-		
-		setResultArray([...resultArray, obj]);
-		
-		setOptionSelected(null);
-		if (questionNum === 4) {
-			navigate("/result");
-			setProgressBarWidth(20);
-			return;
-		}
-		
-		setRandomOpt([]);
-		setQuestionNum(questionNum + 1);
-		setNum(timerNum);
-		percent();
-		randomOption();
-		setButtonDisabled(true);
-		clearTimeout(timer);
+    setResultArray([...resultArray, obj]);
+
+    setOptionSelected(null);
+    if (questionNum === 4) {
+      navigate("/result");
+      setProgressBarWidth(20);
+      return;
+    }
+
+    setRandomOpt([]);
+    setQuestionNum(questionNum + 1);
+    setNum(timerNum);
+    percent();
+    randomOption();
+    setButtonDisabled(true);
+    clearTimeout(timer);
   };
 
-  console.log(selectedQuestions)
-  console.log(questionNum)
+  //   console.log(selectedQuestions)
+  //   console.log(questionNum)
 
   const selectOption = (e) => {
     let name = e.target.value;
@@ -113,7 +120,6 @@ function Quiz() {
     setButtonDisabled(false);
   };
 
-  console.log(resultArray)
 
   return (
     <section className="quiz-container">

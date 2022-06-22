@@ -1,18 +1,5 @@
 
 
-// export const fetchQuestions = () =>{
-// let result
-// 	axios.get('http://localhost:3000/api/questions')
-// 	.then(res=>{
-// 		// console.log(res.data)
-// 		result = res.data
-// 	}).catch(err=>{
-// 		console.log(err)
-// 	})
-
-// 	return result
-// }
-
 export const getRandomQuestions = () =>{
 	const randomQuestions = []
 
@@ -31,7 +18,6 @@ export const getRandomOptions = () =>{
 		let option = Math.floor(Math.random() * 4)
 		if(randomOptions.indexOf(option) === -1) randomOptions.push(option)
 	}
-
 	return randomOptions
 }
 
@@ -44,7 +30,7 @@ export const questionToPlay = (randomNumArray, questionsArray) =>{
 	}
 	// console.log(newQuestionsArray)
 	// console.log(questionsArray)
-	console.log(randomNumArray)
+	// console.log(randomNumArray)
 
 	return newQuestionsArray
 

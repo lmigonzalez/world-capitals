@@ -10,9 +10,8 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
 
 	const [selectedQuestions, setSelectedQuestions] = useState([]);
-
 	let questions
-
+	// console.log(randomQuestion)
 
   const fetchQuestions = () => {
     axios
@@ -29,17 +28,11 @@ export const StateContext = ({ children }) => {
 	});
 };
 
-
-
-// fetchQuestions()
-
-  // console.log(questions)
-  //   const questions = originalArray
-
  
 
   const [progressBarWidth, setProgressBarWidth] = useState(20);
   const [resultArray, setResultArray] = useState([]);
+  const [levelSelected, setLevelSelected] = useState(null);
 
   const percent = () => {
     setProgressBarWidth(progressBarWidth + 20);
@@ -57,12 +50,14 @@ export const StateContext = ({ children }) => {
         progressBarWidth,
         resultArray,
         timerNum,
+		levelSelected, 
         setProgressBarWidth,
         percent,
         setResultArray,
         setTimerNum,
         setSelectedQuestions,
-		fetchQuestions
+		setLevelSelected,
+		fetchQuestions,
       }}
     >
       {children}

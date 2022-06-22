@@ -7,31 +7,38 @@ import { useStateContext } from "../../context/StateContext";
 import { Button } from "react-bootstrap";
 
 const SelectDifficulty =()=> {
-
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const {
+    levelSelected,
+    setLevelSelected,
     setTimerNum,
+    fetchQuestions,
   } = useStateContext();
 
   useEffect(() =>{
     setTimerNum(20)
+    fetchQuestions()
   }, [])
 
-  const [levelSelected, setLevelSelected] = useState("normal");
+
   const navigate = useNavigate()
 
   const easyMode = () => {
     setLevelSelected("easy");
     setTimerNum(30)
+    setButtonDisabled(false)
   };
 
   const normalMode = () => {
     setLevelSelected("normal");
     setTimerNum(20)
+    setButtonDisabled(false)
   };
 
   const hardMode = () => {
     setLevelSelected("hard");
     setTimerNum(10)
+    setButtonDisabled(false)
   };
 
   const startQuiz = () =>{
@@ -67,7 +74,7 @@ const SelectDifficulty =()=> {
         </Button>
       </div>
 	  <div className="start-button">
-	  	<Button onClick={startQuiz}>Start</Button>
+	  	<Button onClick={startQuiz} disabled={buttonDisabled}>Start</Button>
 	  </div>
     </section>
   );

@@ -8,7 +8,7 @@ import { useStateContext } from "../../context/StateContext";
 import { getRandomQuestions, questionToPlay } from "../../utilities/Utilities";
 
 function Result() {
-  const { resultArray, setResultArray, setSelectedQuestions, questions, fetchQuestions } = useStateContext();
+  const { resultArray} = useStateContext();
   const navigate = useNavigate();
 
 
@@ -17,7 +17,7 @@ function Result() {
 // }, [])
 
 useEffect(()=>{
-  fetchQuestions()
+  // fetchQuestions()
 }, [])
 
   const randomKeyNum = () => {
