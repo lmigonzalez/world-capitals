@@ -9,6 +9,8 @@ import Home from "./pages/Home/Home";
 import SelectDifficulty from "./pages/SelectDifficulty/SelectDifficulty";
 import Quiz from "./pages/Quiz/Quiz";
 import Result from "./pages/Result/Result";
+import Login from "./pages/Login/Login";
+import Signup from "./pages/SignUp/Signup";
 
 import {RequireValue, RequireQuizResult} from "./redirect/RequireValues";
 
@@ -16,6 +18,8 @@ import { getRandomQuestions } from "./utilities/Utilities";
 
 function App() {
   const location = useLocation();
+
+
 
   const { setProgressBarWidth, fetchQuestions } = useStateContext();
 
@@ -48,6 +52,9 @@ function App() {
           </RequireQuizResult>
         }
         ></Route>
+
+        <Route path="/login" element={<Login/>} ></Route>
+        <Route path="/signup" element={<Signup/>} ></Route>
       </Routes>
     </div>
   );

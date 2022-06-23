@@ -16,7 +16,7 @@ const SelectDifficulty =()=> {
   } = useStateContext();
 
   useEffect(() =>{
-    setTimerNum(20)
+    setLevelSelected(null)
     fetchQuestions()
   }, [])
 

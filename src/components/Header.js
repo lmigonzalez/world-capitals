@@ -3,9 +3,16 @@ import "./Header.css";
 
 import { Button } from "react-bootstrap";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Header() {
+
+  const navigate = useNavigate()
+
+  const goToLogin = () =>{
+    navigate('/login')
+  }
+
   return (
     <header>
       <div className="header-container">
@@ -15,7 +22,7 @@ function Header() {
         <nav>
           <NavLink to="/leaderboard">Leaderboard</NavLink>
           <NavLink to="/about">About</NavLink>
-          <Button className="button">Login</Button>
+          <Button className="button" onClick={goToLogin}>Login</Button>
         </nav>
       </div>
     </header>

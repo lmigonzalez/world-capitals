@@ -11,13 +11,17 @@ function Home() {
     navigate("/selectdifficulty");
   };
 
+  const goToLogin = () =>{
+    navigate("/login");
+  }
+
   return (
     <section className="home-container">
       <div className="home-buttons">
         <Button className="start-quiz" onClick={startQuiz}>
           Start Quiz
         </Button>
-        <Button className="login">Login</Button>
+        <Button className="login" onClick={goToLogin}>Login</Button>
       </div>
       {/* <img alt='world-image' src={worldImg}/> */}
     </section>
