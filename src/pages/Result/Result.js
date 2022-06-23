@@ -12,14 +12,6 @@ function Result() {
   const navigate = useNavigate();
 
 
-// useEffect(()=>{
-//   setSelectedQuestions(questionToPlay(getRandomQuestions(), questions))
-// }, [])
-
-useEffect(()=>{
-  // fetchQuestions()
-}, [])
-
   const randomKeyNum = () => {
     let key = Math.random() * 1000;
 
@@ -54,23 +46,7 @@ useEffect(()=>{
 	return array
   };
 
-  //   const getPoints = () =>{
 
-  // 	  for(let data of resultArray){
-  // 		  if(data.yourAnswer === data.correctAnswer){
-
-  // 			num ++
-
-  // 		  }
-  // 	  }
-
-  // 	  setCorrectAnswers(num)
-  // 	  setResultPoints(num *  5)
-  //   }
-
-  console.log(resultArray);
-//   console.log(correctAnswers);
-//   console.log(resultPoints);
   return (
     <section className="result-container">
       <div className="result-content">

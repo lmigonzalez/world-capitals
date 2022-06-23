@@ -6,7 +6,7 @@
 	width: 100%;
 	min-height: 100vh;
 	background-color: var(--light-green);
-	padding: 2rem 1rem 0;
+	padding: 7rem 1rem 0;
 
 }
 
@@ -14,7 +14,6 @@
 	width: 25rem;
 	max-width: 100%;
 	background-color: var(--white);
-	margin-top: 5rem;
 	padding: 1rem;
 	border-radius: 0.3rem;
 	border: solid 0.1rem var(--black);

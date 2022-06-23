@@ -11,6 +11,7 @@ import Quiz from "./pages/Quiz/Quiz";
 import Result from "./pages/Result/Result";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
+import Leaderboards from "./pages/Leaderboards/Leaderboards";
 
 import {RequireValue, RequireQuizResult} from "./redirect/RequireValues";
 
@@ -55,6 +56,7 @@ function App() {
 
         <Route path="/login" element={<Login/>} ></Route>
         <Route path="/signup" element={<Signup/>} ></Route>
+        <Route path="/leaderboards" element={<Leaderboards/>} ></Route>
       </Routes>
     </div>
   );
