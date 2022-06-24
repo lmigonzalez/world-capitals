@@ -29,7 +29,7 @@ function Header() {
         </NavLink>
         <nav className="desktop-nav">
           <NavLink to="/leaderboards">Leaderboards</NavLink>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
           <Button className="button" onClick={goToLogin}>Login</Button>
         </nav>
         <BsList className="menu-icon" onClick={toggleMenu}/>

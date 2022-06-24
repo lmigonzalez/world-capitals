@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import axios from "axios";
+
 import "./Signup.css";
 
 import { Form, Button } from "react-bootstrap";
@@ -9,7 +11,7 @@ function Signup() {
   const navigate = useNavigate();
 
   const initialData = {
-	name: "",
+	  name: "",
     email: "",
     password: "",
   };
@@ -28,7 +30,26 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-	console.log(userData)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    const data = JSON.stringify(userData)
+
+    axios.post('http://localhost:3000/api/newuser', data, config)
+    .then(res=>{
+      console.log(res)
+      
+    })
+    .catch(err=>{
+      console.log(data)
+      console.log(err)
+    })
+
+
+
   };
 
   return (

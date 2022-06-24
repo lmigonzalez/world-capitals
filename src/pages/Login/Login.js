@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import axios from "axios";
+
 import "./Login.css";
 
 import { Form, Button } from "react-bootstrap";
@@ -16,17 +18,34 @@ function Login() {
   const [userData, setUserData] = useState(initialData);
 
   const handleChange = (e) => {
-	setUserData({
-		...userData, [e.target.name]: e.target.value
-	})
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleCancel = () => {
-	  navigate('/')
+    navigate("/");
   };
 
   const handleSubmit = (e) => {
-	  e.preventDefault()
+    e.preventDefault();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const data = JSON.stringify(userData);
+
+    axios.post('http://localhost:3000/api/login', data, config)
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
   };
 
   return (
@@ -56,12 +75,10 @@ function Login() {
             />
           </Form.Group>
 
-		  <div className="button-group">
-		  <Button type="submit">Submit</Button>
-          <Button onClick={handleCancel} >Cancel</Button>
-		  </div>
-
-          
+          <div className="button-group">
+            <Button type="submit">Submit</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
+          </div>
         </Form>
         <div className="register">
           <p>Not a member?</p>
