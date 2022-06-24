@@ -33,6 +33,10 @@ export const StateContext = ({ children }) => {
   const [progressBarWidth, setProgressBarWidth] = useState(20);
   const [resultArray, setResultArray] = useState([]);
   const [levelSelected, setLevelSelected] = useState(null);
+  const [token, setToken] = useState(null)
+  const [userId, setUserId] = useState(null)
+  const [name, setName] = useState(null)
+  const [login, setLogin] = useState(false)
 
   const percent = () => {
     setProgressBarWidth(progressBarWidth + 20);
@@ -51,6 +55,14 @@ export const StateContext = ({ children }) => {
         resultArray,
         timerNum,
 		levelSelected, 
+		token,
+		userId,
+		name,
+		login,
+		setToken,
+		setUserId,
+		setName,
+		setLogin,
         setProgressBarWidth,
         percent,
         setResultArray,

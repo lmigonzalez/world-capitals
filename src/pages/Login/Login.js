@@ -7,8 +7,16 @@ import "./Login.css";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useStateContext } from "../../context/StateContext";
+
 function Login() {
   const navigate = useNavigate();
+
+  const {
+    setToken,
+    setUserId,
+    setName,
+  } = useStateContext();
 
   const initialData = {
     email: "",
@@ -40,7 +48,12 @@ function Login() {
 
     axios.post('http://localhost:3000/api/login', data, config)
     .then((res)=>{
-      console.log(res)
+      // console.log(res.data)
+      setToken(res.data.token)
+      setUserId(res.data.user._id)
+      setName(res.data.user.name)
+      localStorage.setItem('userData', JSON.stringify({userId: res.data.user._id, token: res.data.token}))
+      navigate('/')
     })
     .catch((err)=>{
       console.log(err)

@@ -4,10 +4,20 @@ import "./Home.css";
 
 import { Button } from "react-bootstrap";
 
+import { useStateContext } from "../../context/StateContext";
+
 function Home() {
   const navigate = useNavigate();
+  const {
+    login,
+  } = useStateContext();
+
+  useEffect(()=>{
+
+  }, [login])
 
   const startQuiz = () => {
+
     navigate("/selectdifficulty");
   };
 
@@ -21,7 +31,8 @@ function Home() {
         <Button className="start-quiz" onClick={startQuiz}>
           Start Quiz
         </Button>
-        <Button className="login" onClick={goToLogin}>Login</Button>
+        {!login && <Button className="login" onClick={goToLogin}>Login</Button>}
+        
       </div>
       {/* <img alt='world-image' src={worldImg}/> */}
     </section>

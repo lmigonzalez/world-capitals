@@ -23,13 +23,39 @@ function App() {
 
 
 
-  const { setProgressBarWidth, fetchQuestions } = useStateContext();
+  const { setProgressBarWidth, fetchQuestions, setToken, setUserId, setName, token,login, setLogin } = useStateContext();
 
   useEffect(() => {
     setProgressBarWidth(20);
     getRandomQuestions();
     fetchQuestions();
+    checkIfUserExist()
   }, []);
+
+  useEffect(()=>{
+    checkIfLogin()
+  }, [token])
+
+  const checkIfUserExist = () =>{
+    const storedData = JSON.parse(localStorage.getItem('userData'))
+    if(storedData && storedData.token && storedData.userId){
+      setToken(storedData.token)
+      setUserId(storedData.userId)
+      setName(storedData.userName)
+    }
+  }
+
+  const checkIfLogin = () =>{
+    console.log(login)
+    if(token != null){
+      setLogin(true)
+    }
+    else{
+      setLogin(false)
+    }
+
+  }
+
 
   return (
     <div className="App">
