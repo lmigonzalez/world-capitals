@@ -12,8 +12,9 @@
 .result-content{
 	margin: 0 auto;
 	padding: 0.5rem 1rem;
-	width: 90%;
-	max-width: 1200px;
+	width: 1200px;
+	max-width: 100%;
+
 }
 
 .result-details{
@@ -28,8 +29,8 @@
 
 .result-table{
 	margin: 1rem auto;
-	width: 100%;
-	max-width: 1200px;
+	width: 1200px;
+	max-width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
 	border: 0.1rem solid black;
@@ -84,4 +85,21 @@
 
 .incorrect-icon{
 	color: var(--red);
+}
+
+
+@media(max-width: 410px){
+	.result-table{
+		margin: 1rem auto;
+		font-size: 80%;
+	}
+	
+}
+
+@media(max-width: 320px){
+	.result-table{
+		margin: 1rem auto;
+		font-size: 60%;
+	}
+	
 }

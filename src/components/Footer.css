@@ -1,6 +1,5 @@
 footer{
-	/* background: rgb(185,248,211);
-	background: linear-gradient(180deg, rgba(185,248,211,1) 10%, rgba(83,191,157,1) 100%); */
+	padding: 0 1rem;
 	background-color: var(--dark-green);
 	height: 7rem;
 	width: 100%;
