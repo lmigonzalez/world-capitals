@@ -11,17 +11,99 @@ function Signup() {
   const navigate = useNavigate();
 
   const initialData = {
-	  name: "",
-    email: "",
-    password: "",
+	  name: '',
+    email: '',
+    password: '',
   };
 
   const [userData, setUserData] = useState(initialData);
+
+  const [emailDisabled, setEmailDisabled] = useState(true)
+  const [passwordDisabled, setPasswordDisabled] = useState(true)
+  const [submitDisabled, setSubmitDisabled] = useState(true)
+
+	const initialErrorMsg = {
+		name: '',
+		email: '',
+		password: '',
+		
+
+	}
+
+	const [error, setError] = useState(initialErrorMsg)
+
+
+  const inputErrorHandler = (e) => {
+
+	
+	
+		if(e.target.name === 'name'){
+			if(!e.target.value.trim().length){
+				setError({...error, name: '', })
+        setEmailDisabled(true)
+        setSubmitDisabled(true)
+			
+			}else if(e.target.value.trim().length < 3){
+				setError({...error, name: 'name is too short'})
+        setEmailDisabled(true)
+        setSubmitDisabled(true)
+			
+
+			}else if(e.target.value.trim().length >= 20){
+				setError({...error, name: 'name is too long'})
+        setEmailDisabled(true)
+        setSubmitDisabled(true)
+			
+			}else{
+				setError({...error, name: ''})
+        setEmailDisabled(false)
+		
+			}
+			// return
+		}
+
+		if(e.target.name === 'email'){
+			if(e.target.value.trim().length > 1 && (!e.target.value.includes('@') || !e.target.value.includes('.'))){
+				setError({...error, email: 'enter a valid email'})
+        setPasswordDisabled(true)
+        setSubmitDisabled(true)
+				
+			}else{
+				setError({...error, email: ''})
+        setPasswordDisabled(false)
+			}
+			// return
+		}
+
+		if(e.target.name === 'password'){
+			if(e.target.value.trim().length < 4 && e.target.value.trim().length > 0){
+				setError({...error, password: 'password is too weak'})
+        setSubmitDisabled(true)
+				
+			}else{
+				setError({...error, password: ''})
+        setSubmitDisabled(false)
+			
+		
+			}
+			// return
+		}
+
+
+    // if(error.name.length === 0 || error.email.length === 0 || error.password.length === 0 ){
+    //   setDisabled(false)
+    // }
+    // else{
+    //   setDisabled(true)
+    // }
+		
+	}
 
   const handleChange = (e) => {
 	setUserData({
 		...userData, [e.target.name]: e.target.value
 	})
+  inputErrorHandler(e)
   };
 
   const handleCancel = () => {
@@ -68,17 +150,20 @@ function Signup() {
                 value={userData.name}
                 onChange={handleChange}
               />
+              <p className="form-error">{error.name}</p>
             </Form.Group>
-
+              <p></p>
             <Form.Group className="input-section" controlId="formEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
                 name="email"
+                disabled = {emailDisabled}
                 value={userData.email}
                 onChange={handleChange}
               />
+              <p className="form-error">{error.email}</p>
             </Form.Group>
 
             <Form.Group className="input-section" controlId="formPassword">
@@ -87,13 +172,15 @@ function Signup() {
                 type="password"
                 placeholder="Password"
                 name="password"
+                disabled = {passwordDisabled}
                 value={userData.password}
                 onChange={handleChange}
               />
+              <p className="form-error">{error.password}</p>
             </Form.Group>
 
             <div className="button-group">
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={submitDisabled} >Submit</Button>
               <Button onClick={handleCancel}>Cancel</Button>
             </div>
           </Form>

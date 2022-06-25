@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/SignUp/Signup";
 import Leaderboards from "./pages/Leaderboards/Leaderboards";
 import Profile from "./pages/Profile/Profile";
+import Footer from "./components/Footer";
 
 import {
   RequireValue,
@@ -104,6 +105,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/leaderboards" element={<Leaderboards />}></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }

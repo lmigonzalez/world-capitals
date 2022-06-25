@@ -8,49 +8,42 @@ import axios from "axios";
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-
-	const [selectedQuestions, setSelectedQuestions] = useState([]);
-	let questions
-	// console.log(randomQuestion)
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  let questions;
+  // console.log(randomQuestion)
 
   const fetchQuestions = () => {
     axios
       .get("http://localhost:3000/api/questions")
       .then((res) => {
-		 questions = res.data	
-			
-	})
-	.then(()=>{
-		setSelectedQuestions(questionToPlay(getRandomQuestions(), questions))
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-};
-
- 
+        questions = res.data;
+      })
+      .then(() => {
+        setSelectedQuestions(questionToPlay(getRandomQuestions(), questions));
+      })
+      .catch((err) => {
+        console.log("ERROR!!!");
+      });
+  };
 
   const [progressBarWidth, setProgressBarWidth] = useState(20);
   const [resultArray, setResultArray] = useState([]);
   const [levelSelected, setLevelSelected] = useState(null);
-  const [token, setToken] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [name, setName] = useState(null)
-  const [isLogin, setIsLogin] = useState(false)
-  const [userName, setUserName] = useState(null)  
-  const [userPoints, setUserPoints] = useState(0)  
-  const [gamesPlayed, setGamesPlayed] = useState(0)  
-  const [correctAnswers, setCorrectAnswers] = useState(0) 
-  const [userDataToUpdate, setUserDataToUpdate] = useState({})
+  const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [name, setName] = useState(null);
+  const [isLogin, setIsLogin] = useState(false);
+  const [userName, setUserName] = useState(null);
+  const [userPoints, setUserPoints] = useState(0);
+  const [gamesPlayed, setGamesPlayed] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [userDataToUpdate, setUserDataToUpdate] = useState({});
 
   const percent = () => {
     setProgressBarWidth(progressBarWidth + 20);
   };
 
   const [timerNum, setTimerNum] = useState(20);
-
-
-
 
   return (
     <Context.Provider
@@ -60,32 +53,32 @@ export const StateContext = ({ children }) => {
         progressBarWidth,
         resultArray,
         timerNum,
-		levelSelected, 
-		token,
-		userId,
-		name,
-		isLogin,
-		userName,
-		userPoints,
-		gamesPlayed,
-		correctAnswers,
-		userDataToUpdate,
-		setToken,
-		setUserId,
-		setName,
-		setIsLogin,
-		setUserName,
-		setUserPoints,
-		setGamesPlayed,
-		setCorrectAnswers,
+        levelSelected,
+        token,
+        userId,
+        name,
+        isLogin,
+        userName,
+        userPoints,
+        gamesPlayed,
+        correctAnswers,
+        userDataToUpdate,
+        setToken,
+        setUserId,
+        setName,
+        setIsLogin,
+        setUserName,
+        setUserPoints,
+        setGamesPlayed,
+        setCorrectAnswers,
         setProgressBarWidth,
         percent,
         setResultArray,
         setTimerNum,
         setSelectedQuestions,
-		setLevelSelected,
-		fetchQuestions,
-		setUserDataToUpdate,
+        setLevelSelected,
+        fetchQuestions,
+        setUserDataToUpdate,
       }}
     >
       {children}

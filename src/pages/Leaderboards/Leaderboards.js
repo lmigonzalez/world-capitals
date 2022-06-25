@@ -5,36 +5,25 @@ import "./Leaderboards.css";
 function Leaderboards() {
 
   useEffect(() =>{
-    sortObjectValue()
     getUsers()
-
   }, [])
 
-
-
   const [usersArray, setUsersArray] = useState([])
-  const [sortUserArray, setSortUserArray] = useState([])
-
-
-  const sortObjectValue = () =>{
-    usersArray.sort((a, b) => (b.points - a.points))
-    setSortUserArray(usersArray)
-   
-  }
-
+ 
 
   const getUsers = () =>{
     axios.get('http://localhost:3000/api/users')
     .then(res=>{
       setUsersArray(res.data)
-      // console.log(usersArray)
+   
+      
     })
     .catch(err=>{
       console.log(err)
       
     })
   }
-
+  
 
   return (
     <section className="leaderboards-container">
@@ -50,10 +39,10 @@ function Leaderboards() {
         </thead>
 
         <tbody>
-        {sortUserArray.map((data) => {
+        {usersArray.sort((a, b) => (b.points - a.points)).map((data) => {
               return (
                 <tr key={data._id}>
-                  <td> {sortUserArray.indexOf(data) + 1} </td>
+                  <td> {usersArray.indexOf(data) + 1} </td>
                   <td> {data.name} </td>
                   <td> {data.points} </td>
                 </tr>

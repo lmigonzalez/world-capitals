@@ -50,7 +50,7 @@ function Result() {
     let num = 0;
 
     for (let data of resultArray) {
-      if (data.yourAnswer === data.correctAnswer) {
+      if (data.yourAnswer.trim() === data.correctAnswer.trim()) {
         num++;
       }
     }
@@ -66,6 +66,9 @@ function Result() {
 
   
   const updateUserValue = () =>{
+
+
+    if(!userId) return
 
     const config = {
       headers: {
