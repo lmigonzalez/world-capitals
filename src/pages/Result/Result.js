@@ -1,15 +1,32 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import "./Result.css";
 import { useNavigate } from "react-router-dom";
 import { BsCheckLg, BsXCircleFill } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 
 import { useStateContext } from "../../context/StateContext";
-import { getRandomQuestions, questionToPlay } from "../../utilities/Utilities";
+
 
 function Result() {
-  const { resultArray} = useStateContext();
+  const { 
+    token,
+    userId,
+    resultArray,
+    userPoints,
+		gamesPlayed,
+		correctAnswers,
+    setUserPoints,
+		setGamesPlayed,
+		setCorrectAnswers,
+    setUserDataToUpdate,
+  } = useStateContext();
   const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    updateUserValue()
+  }, [])
 
 
   const randomKeyNum = () => {
@@ -46,6 +63,32 @@ function Result() {
 	return array
   };
 
+
+  
+  const updateUserValue = () =>{
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    let userDataToUpdate = {
+      points: userPoints + answerAndPoints()[1],
+      gamesPlayed: gamesPlayed + 1,
+      correctAnswers: correctAnswers + answerAndPoints()[0]
+    }
+
+    axios.patch(`http://localhost:3000/api/updatevalues/${userId}`, userDataToUpdate, config)
+    .then(res=>{
+      console.log(res.data)
+
+    }).catch(err=>{
+      console.log(err)
+    })
+    console.log(userDataToUpdate)
+  }
 
   return (
     <section className="result-container">
@@ -94,41 +137,3 @@ function Result() {
 }
 
 export default Result;
-
-{
-  /* <tr>
-<td>
-  <BsCheckLg />
-</td>
-<td> Cuba </td>
-<td> Havana </td>
-<td> Tokio </td>
-</tr>
-
-<tr>
-<td>
-  <BsCheckLg />
-</td>
-<td> France </td>
-<td> Paris </td>
-<td> Rome </td>
-</tr>
-
-<tr>
-<td>
-  <BsCheckLg />
-</td>
-<td> France </td>
-<td> Paris </td>
-<td> Rome </td>
-</tr>
-
-<tr>
-<td>
-  <BsCheckLg />
-</td>
-<td> France </td>
-<td> Paris </td>
-<td> Rome </td>
-</tr> */
-}

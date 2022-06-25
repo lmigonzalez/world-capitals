@@ -5,46 +5,20 @@ import "./Leaderboards.css";
 function Leaderboards() {
 
   useEffect(() =>{
-    // sortObjectValue()
+    sortObjectValue()
     getUsers()
 
   }, [])
 
-  const obj = [
-    {
-      id: 1,
-      name: 'Luis',
-      points: 80
-    },
-    {
-      id: 2,
-      name: 'Sumail',
-      points: 85
-    },
-    {
-      id: 3,
-      name: 'Miracle',
-      points: 60
-    },
-    {
-      id: 4,
-      name: 'Kuroky',
-      points: 100
-    },
-    {
-      id: 5,
-      name: 'GH',
-      points: 20
-    }
-  ]
+
 
   const [usersArray, setUsersArray] = useState([])
-  const [newObj, setNewObj] = useState([])
+  const [sortUserArray, setSortUserArray] = useState([])
 
 
   const sortObjectValue = () =>{
-    obj.sort((a, b) => (b.points - a.points))
-    setNewObj(obj)
+    usersArray.sort((a, b) => (b.points - a.points))
+    setSortUserArray(usersArray)
    
   }
 
@@ -76,10 +50,10 @@ function Leaderboards() {
         </thead>
 
         <tbody>
-        {usersArray.map((data) => {
+        {sortUserArray.map((data) => {
               return (
                 <tr key={data._id}>
-                  <td> {usersArray.indexOf(data) + 1} </td>
+                  <td> {sortUserArray.indexOf(data) + 1} </td>
                   <td> {data.name} </td>
                   <td> {data.points} </td>
                 </tr>

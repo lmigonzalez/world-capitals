@@ -41,6 +41,7 @@ function Signup() {
     axios.post('http://localhost:3000/api/newuser', data, config)
     .then(res=>{
       console.log(res)
+      navigate('/login')
       
     })
     .catch(err=>{

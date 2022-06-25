@@ -21,3 +21,11 @@ export const RequireQuizResult = ({ children, redirectTo }) =>{
 		resultArray.length > 0 ? children : <Navigate to={redirectTo}/>
 	  )
 }
+
+export const RequireProfileData = ({ children, redirectTo }) =>{
+	const {isLogin} = useStateContext()
+
+	return(
+		isLogin? children: <Navigate to={redirectTo}/>
+	)
+}

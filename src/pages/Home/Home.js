@@ -9,12 +9,12 @@ import { useStateContext } from "../../context/StateContext";
 function Home() {
   const navigate = useNavigate();
   const {
-    login,
+    isLogin,
   } = useStateContext();
 
   useEffect(()=>{
 
-  }, [login])
+  }, [isLogin])
 
   const startQuiz = () => {
 
@@ -31,7 +31,7 @@ function Home() {
         <Button className="start-quiz" onClick={startQuiz}>
           Start Quiz
         </Button>
-        {!login && <Button className="login" onClick={goToLogin}>Login</Button>}
+        {!isLogin && <Button className="login" onClick={goToLogin}>Login</Button>}
         
       </div>
       {/* <img alt='world-image' src={worldImg}/> */}

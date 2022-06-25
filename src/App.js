@@ -14,47 +14,55 @@ import Signup from "./pages/SignUp/Signup";
 import Leaderboards from "./pages/Leaderboards/Leaderboards";
 import Profile from "./pages/Profile/Profile";
 
-import {RequireValue, RequireQuizResult} from "./redirect/RequireValues";
+import {
+  RequireValue,
+  RequireQuizResult,
+  RequireProfileData,
+} from "./redirect/RequireValues";
 
 import { getRandomQuestions } from "./utilities/Utilities";
 
 function App() {
   const location = useLocation();
 
-
-
-  const { setProgressBarWidth, fetchQuestions, setToken, setUserId, setName, token,login, setLogin } = useStateContext();
+  const {
+    setProgressBarWidth,
+    fetchQuestions,
+    setToken,
+    setUserId,
+    setName,
+    token,
+    isLogin,
+    setIsLogin,
+  } = useStateContext();
 
   useEffect(() => {
     setProgressBarWidth(20);
     getRandomQuestions();
     fetchQuestions();
-    checkIfUserExist()
+    checkIfUserExist();
   }, []);
 
-  useEffect(()=>{
-    checkIfLogin()
-  }, [token])
+  useEffect(() => {
+    checkIfLogin();
+  }, [token]);
 
-  const checkIfUserExist = () =>{
-    const storedData = JSON.parse(localStorage.getItem('userData'))
-    if(storedData && storedData.token && storedData.userId){
-      setToken(storedData.token)
-      setUserId(storedData.userId)
-      setName(storedData.userName)
+  const checkIfUserExist = () => {
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (storedData && storedData.token && storedData.userId) {
+      setToken(storedData.token);
+      setUserId(storedData.userId);
+      setName(storedData.userName);
     }
-  }
+  };
 
-  const checkIfLogin = () =>{
-    console.log(login)
-    if(token != null){
-      setLogin(true)
+  const checkIfLogin = () => {
+    if (token === null) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
     }
-    else{
-      setLogin(false)
-    }
-
-  }
+  };
 
 
   return (
@@ -74,17 +82,27 @@ function App() {
           }
         ></Route>
         {/* <Route path="/result" element={<Result />}></Route> */}
-       <Route path="/result" element={
-          <RequireQuizResult redirectTo="/">
+        <Route
+          path="/result"
+          element={
+            <RequireQuizResult redirectTo="/">
               <Result />
-          </RequireQuizResult>
-        }
+            </RequireQuizResult>
+          }
         ></Route>
 
-        <Route path="/login" element={<Login/>} ></Route>
-        <Route path="/signup" element={<Signup/>} ></Route>
-        <Route path="/leaderboards" element={<Leaderboards/>} ></Route>
-        <Route path="/profile:id" element={<Profile/>} ></Route>
+        <Route
+          path="/profile/:id"
+          element={
+            <RequireProfileData redirectTo="/">
+              <Profile />
+            </RequireProfileData>
+          }
+        ></Route>
+
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/leaderboards" element={<Leaderboards />}></Route>
       </Routes>
     </div>
   );

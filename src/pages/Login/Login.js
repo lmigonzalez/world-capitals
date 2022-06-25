@@ -16,6 +16,9 @@ function Login() {
     setToken,
     setUserId,
     setName,
+    setUserPoints,
+		setGamesPlayed,
+		setCorrectAnswers,
   } = useStateContext();
 
   const initialData = {
@@ -52,7 +55,11 @@ function Login() {
       setToken(res.data.token)
       setUserId(res.data.user._id)
       setName(res.data.user.name)
+      setUserPoints(res.data.user.points)
+		  setGamesPlayed(res.data.user.gamesPlayed)
+		  setCorrectAnswers(res.data.user.correctAnswers)
       localStorage.setItem('userData', JSON.stringify({userId: res.data.user._id, token: res.data.token}))
+
       navigate('/')
     })
     .catch((err)=>{

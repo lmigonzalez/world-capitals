@@ -10,7 +10,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Header() {
   const navigate = useNavigate();
 
-  const { login, setToken, setUserId } = useStateContext();
+  const { isLogin, setToken, userId, setUserId, setUserName, setUserPoints, setGamesPlayed, setCorrectAnswers} = useStateContext();
 
   const [toggle, setToggle] = useState(false);
 
@@ -22,6 +22,10 @@ function Header() {
     localStorage.removeItem("userData");
     setToken(null);
     setUserId(null);
+    setUserName(null)
+    setUserPoints(null)
+    setGamesPlayed(null)
+    setCorrectAnswers(null)
     navigate("/");
   };
 
@@ -37,13 +41,14 @@ function Header() {
         </NavLink>
         <nav className="desktop-nav">
           <NavLink to="/leaderboards">Leaderboards</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-          {!login ? (
+          {isLogin && <NavLink to={`/profile/${userId}`}>Profile</NavLink>}
+          
+          {!isLogin ? (
             <Button className="button" onClick={goToLogin}>
               Login
             </Button>
           ) : (
-            <Button className="button" onClick={Logout}>
+            <Button className="button logout" onClick={Logout}>
               Log out
             </Button>
           )}
@@ -55,13 +60,13 @@ function Header() {
         onClick={toggleMenu}
       >
         <NavLink to="/leaderboards">Leaderboards</NavLink>
-        <NavLink to="/about">About</NavLink>
-        {!login ? (
+        {isLogin && <NavLink to={`/profile/${userId}`}>Profile</NavLink>}
+        {!isLogin ? (
           <Button className="button" onClick={goToLogin}>
             Login
           </Button>
         ) : (
-          <Button className="button" onClick={Logout}>
+          <Button className="button logout" onClick={Logout}>
             Log out
           </Button>
         )}

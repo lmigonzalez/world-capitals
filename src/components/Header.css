@@ -37,6 +37,10 @@ nav a{
 
 }
 
+.logout{
+	background-color: var(--red);
+}
+
 .menu-icon{
 	font-size: 2.5rem;
 	display: none;

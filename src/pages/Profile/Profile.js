@@ -6,13 +6,18 @@ import { useStateContext } from "../../context/StateContext";
 
 function Profile() {
 	const {
-	userId
+	userId,
+	userName,
+	setUserName,
+	userPoints,
+	userDataToUpdate,
+	setUserPoints,
+	gamesPlayed,
+	setGamesPlayed,
+	correctAnswers,
+	setCorrectAnswers
 	  } = useStateContext();
-
-	const [name, setName] = useState(null)  
-	const [points, setPoints] = useState(null)  
-	const [gamesPlayed, setGamesPlayed] = useState(null)  
-	const [correctAnswers, setCorrectAnswers] = useState(null)  
+ 
 
 	useEffect(()=>{
 		getUserData()
@@ -20,35 +25,35 @@ function Profile() {
 
 
 
+
 const getUserData = () =>{
 
-	axios.get(`http://localhost:3000/api/userid/${userId}`)
+
+	axios.get(`http://localhost:3000/api/profile/${userId}`)
 	.then((res)=>{
-		console.log(res)
-		setName(res.data.name)
-		setPoints(res.data.points)
+
+		setUserName(res.data.name)
+		setUserPoints(res.data.points)
 		setGamesPlayed(res.data.gamesPlayed)
 		setCorrectAnswers(res.data.correctAnswers)
 	})
 	.catch((err)=>{
 		console.log(err)
 	})
+
+	
 }
-
-
-
-
 
 
   return (
     <section className="profile-container">
       <div className="profile-content">
-        <h2>{name}</h2>
+        <h2>{userName}</h2>
         <table className="profile-table">
 			<tbody>
           <tr>
             <th>Points:</th>
-            <td>{points}</td>
+            <td>{userPoints}</td>
           </tr>
           <tr>
             <th>Games Played:</th>
