@@ -62,10 +62,14 @@ describe("Login Components", () =>{
 
 		const passwordInputField = screen.getByLabelText('Password')
 
-		fireEvent.change(emailInputField, { target: { value: 'user email' } })
-		fireEvent.change(passwordInputField, { target: { value: 'password' } })
+		const submitBtn = screen.getByText("Submit")
 
-		expect(emailInputField).toHaveValue('Email address')
+		fireEvent.change(emailInputField, { 'target': { 'value': 'user@email.com' } })
+		fireEvent.change(passwordInputField, { 'target': { 'value': 'password' } })
+
+		expect(emailInputField).toHaveValue('user@email.com')
+		expect(passwordInputField).toHaveValue('password')
+		expect(submitBtn).toBeEnabled()
 
 
 	})

@@ -61,6 +61,31 @@ describe("Login Components", () =>{
 		expect(submitBtn).toBeDisabled()
 	}) 
 
+	it('submit enable when input has the correspondent value', ()=>{
+
+		render(<MockSignup/>)
+		const nameInputField = screen.getByLabelText('Name')
+		
+		const emailInputField = screen.getByLabelText('Email address')
+
+		const passwordInputField = screen.getByLabelText('Password')
+
+		const submitBtn = screen.getByText("Submit")
+
+		fireEvent.change(nameInputField, { 'target': { 'value': 'username' } })
+
+		fireEvent.change(emailInputField, { 'target': { 'value': 'user@email.com' } })
+
+		fireEvent.change(passwordInputField, { 'target': { 'value': 'password' } })
+
+		expect(nameInputField).toHaveValue('username')
+		expect(emailInputField).toHaveValue('user@email.com')
+		expect(passwordInputField).toHaveValue('password')
+		expect(submitBtn).toBeEnabled()
+
+
+	})
+
 	
 	
 })

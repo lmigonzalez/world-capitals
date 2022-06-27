@@ -17,10 +17,7 @@ function Result() {
     userPoints,
 		gamesPlayed,
 		correctAnswers,
-    setUserPoints,
-		setGamesPlayed,
-		setCorrectAnswers,
-    setUserDataToUpdate,
+    backendUrl,
   } = useStateContext();
   const navigate = useNavigate();
 
@@ -84,7 +81,7 @@ function Result() {
       correctAnswers: correctAnswers + answerAndPoints()[0]
     }
 
-    axios.patch(`http://localhost:3000/api/updatevalues/${userId}`, userDataToUpdate, config)
+    axios.patch(`${backendUrl}/updatevalues/${userId}`, userDataToUpdate, config)
     .then(res=>{
       console.log(res.data)
 

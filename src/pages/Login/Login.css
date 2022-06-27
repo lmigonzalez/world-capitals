@@ -51,6 +51,31 @@
 	padding: 0 0.3rem;
 }
 
+.successfully-registered{
+	/* background-color: #3AB0FF; */
+	color: var(--dark-green);
+	margin: 0.3rem 0;
+	font-size: 0.8rem;
+}
+
+.successfully-registered.inactive{
+	display: none;
+}
+
+.error-msg{
+	width: 100%;
+	font-size: 0.8rem;
+	margin-bottom: 0.5rem;
+	text-align: center;
+	color: var(--red);
+}
+
+.error-msg.inactive{
+	display: none;
+}
+
+
+
 .button-group{
 	width: 100%;
 }

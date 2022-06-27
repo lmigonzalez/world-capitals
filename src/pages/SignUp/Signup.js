@@ -7,8 +7,15 @@ import "./Signup.css";
 import { Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useStateContext } from "../../context/StateContext";
+
 function Signup() {
   const navigate = useNavigate();
+
+  const {
+  setUserCreatedMsg,
+  backendUrl,  
+  } = useStateContext();
 
   const initialData = {
 	  name: '',
@@ -21,6 +28,7 @@ function Signup() {
   const [emailDisabled, setEmailDisabled] = useState(true)
   const [passwordDisabled, setPasswordDisabled] = useState(true)
   const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [createUSerMsg, setCreateUserMsg] = useState(false)
 
 	const initialErrorMsg = {
 		name: '',
@@ -31,6 +39,18 @@ function Signup() {
 	}
 
 	const [error, setError] = useState(initialErrorMsg)
+
+  const closeRegisteredSuccessfullyMsg = () =>{
+    setTimeout(() => {
+      setUserCreatedMsg(false)
+    }, 5000)
+  }
+
+  const closeCreateUserErrorMsg = () =>{
+    setTimeout(() => {
+      setCreateUserMsg(false)
+    }, 5000)
+  }
 
 
   const inputErrorHandler = (e) => {
@@ -59,7 +79,7 @@ function Signup() {
         setEmailDisabled(false)
 		
 			}
-			// return
+
 		}
 
 		if(e.target.name === 'email'){
@@ -72,7 +92,7 @@ function Signup() {
 				setError({...error, email: ''})
         setPasswordDisabled(false)
 			}
-			// return
+
 		}
 
 		if(e.target.name === 'password'){
@@ -86,17 +106,9 @@ function Signup() {
 			
 		
 			}
-			// return
+
 		}
 
-
-    // if(error.name.length === 0 || error.email.length === 0 || error.password.length === 0 ){
-    //   setDisabled(false)
-    // }
-    // else{
-    //   setDisabled(true)
-    // }
-		
 	}
 
   const handleChange = (e) => {
@@ -120,18 +132,17 @@ function Signup() {
     }
     const data = JSON.stringify(userData)
 
-    axios.post('http://localhost:3000/api/newuser', data, config)
+    axios.post(`${backendUrl}/newuser`, data, config)
     .then(res=>{
-      console.log(res)
       navigate('/login')
+      setUserCreatedMsg(true)
+      closeRegisteredSuccessfullyMsg()
       
     })
     .catch(err=>{
-      console.log(data)
-      console.log(err)
+      setCreateUserMsg(true)
+      closeCreateUserErrorMsg()
     })
-
-
 
   };
 
@@ -179,6 +190,11 @@ function Signup() {
               <p className="form-error">{error.password}</p>
             </Form.Group>
 
+            
+            <div className={createUSerMsg? "signup-error-msg": "signup-error-msg inactive"}>
+
+              <p>Something happened, please try again!</p>
+            </div>
             <div className="button-group">
               <Button type="submit" disabled={submitDisabled} >Submit</Button>
               <Button onClick={handleCancel}>Cancel</Button>

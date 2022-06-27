@@ -13,12 +13,15 @@ function Login() {
   const navigate = useNavigate();
 
   const {
+    userCreatedMsg,
     setToken,
     setUserId,
     setName,
     setUserPoints,
 		setGamesPlayed,
 		setCorrectAnswers,
+    backendUrl,
+
   } = useStateContext();
   
   const initialData = {
@@ -28,6 +31,8 @@ function Login() {
 
   const [userData, setUserData] = useState(initialData);
   const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [errorMsg, setErrorMsg] = useState(false)
+ 
 
   useEffect(()=>{
     checkIfInputFields()
@@ -45,6 +50,12 @@ function Login() {
     }
   }
 
+
+  const closeErrorMsg = () =>{
+    setTimeout(() => {
+      setErrorMsg(false)
+    }, 5000)
+  }
 
     
     const handleChange = (e) => {
@@ -72,9 +83,8 @@ function Login() {
       
       const data = JSON.stringify(userData);
       
-      axios.post('http://localhost:3000/api/login', data, config)
+      axios.post(`${backendUrl}/login`, data, config)
       .then((res)=>{
-        // console.log(res.data)
         setToken(res.data.token)
         setUserId(res.data.user._id)
         setName(res.data.user.name)
@@ -86,17 +96,18 @@ function Login() {
         navigate('/')
       })
       .catch((err)=>{
-        console.log(err)
+        setErrorMsg(true)
+        closeErrorMsg()
       })
       
     };
-    // console.log(userData.email.length)
 
     
     return (
     <section className="form-container">
       <div className="form">
         <h1>Login</h1>
+        <div className={userCreatedMsg? "successfully-registered" : "successfully-registered inactive"}> <p>You have registered successfully, please login.</p> </div>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="input-section" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
@@ -119,7 +130,9 @@ function Login() {
               onChange={handleChange}
             />
           </Form.Group>
-
+          <div className={errorMsg? "error-msg": "error-msg inactive"}>
+            <p>Incorrect  Email and/or Password </p>
+          </div>
           <div className="button-group">
             <Button type="submit" disabled={submitDisabled} >Submit</Button>
             <Button onClick={handleCancel}>Cancel</Button>

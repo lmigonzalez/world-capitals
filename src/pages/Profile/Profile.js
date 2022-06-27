@@ -10,12 +10,12 @@ function Profile() {
 	userName,
 	setUserName,
 	userPoints,
-	userDataToUpdate,
 	setUserPoints,
 	gamesPlayed,
 	setGamesPlayed,
 	correctAnswers,
-	setCorrectAnswers
+	setCorrectAnswers,
+	backendUrl,
 	  } = useStateContext();
  
 
@@ -29,7 +29,7 @@ function Profile() {
 const getUserData = () =>{
 
 
-	axios.get(`http://localhost:3000/api/profile/${userId}`)
+	axios.get(`${backendUrl}/profile/${userId}`)
 	.then((res)=>{
 
 		setUserName(res.data.name)

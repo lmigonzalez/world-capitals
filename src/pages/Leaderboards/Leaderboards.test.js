@@ -9,7 +9,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"
 
 
-const MockQuiz = () => {
+const MockLeaderboards = () => {
   return (
     <BrowserRouter>
       <React.StrictMode>
@@ -24,13 +24,13 @@ const MockQuiz = () => {
 describe("Leaderboards Components", () =>{
 
 	it("header to render with correct text", ()=>{
-		render(<MockQuiz/>)
+		render(<MockLeaderboards/>)
 		const header = screen.getByText("Leaderboards")
 		expect(header).toBeInTheDocument()
 	})  
 
 	it("table render correctly", async ()=>{
-		render(<MockQuiz/>)
+		render(<MockLeaderboards/>)
 		const table = await screen.findByRole("table")
 		expect(table).toBeInTheDocument()
 	})

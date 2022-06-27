@@ -78,22 +78,3 @@
 	background-color: var(--red);
 	margin-right: 1rem;
 }
-
-@media(max-width: 500px){
-	/* .control-buttons{
-		flex-direction: column;
-		margin-top: 1rem;
-	}
-
-	.control-buttons button{
-		width: 100%;
-	}
-	
-	.next-question{
-		order: 2;
-	}
-	.exit-questions{
-		order: 1;
-	} */
-	
-}

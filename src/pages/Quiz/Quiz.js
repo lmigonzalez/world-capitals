@@ -22,6 +22,7 @@ function Quiz() {
     setResultArray,
     timerNum,
 
+
   } = useStateContext();
 
   const [optionSelected, setOptionSelected] = useState(null);
@@ -33,11 +34,10 @@ function Quiz() {
 
   useEffect(() => {
     setResultArray([]);
-    // countDown();
   }, []);
 
   useEffect(() => {
-    // countDown();
+    countDown();
   }, [num]);
 
   useEffect(() => {
@@ -103,9 +103,6 @@ function Quiz() {
     setButtonDisabled(true);
     clearTimeout(timer);
   };
-
-  //   console.log(selectedQuestions)
-  //   console.log(questionNum)
 
   const selectOption = (e) => {
     let name = e.target.value;

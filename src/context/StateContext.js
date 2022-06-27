@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {
-  fetchQuestions,
   getRandomQuestions,
   questionToPlay,
 } from "../utilities/Utilities";
@@ -10,21 +9,6 @@ const Context = createContext();
 export const StateContext = ({ children }) => {
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   let questions;
-  // console.log(randomQuestion)
-
-  const fetchQuestions = () => {
-    axios
-      .get("http://localhost:3000/api/questions")
-      .then((res) => {
-        questions = res.data;
-      })
-      .then(() => {
-        setSelectedQuestions(questionToPlay(getRandomQuestions(), questions));
-      })
-      .catch((err) => {
-        console.log("ERROR!!!");
-      });
-  };
 
   const [progressBarWidth, setProgressBarWidth] = useState(5);
   const [resultArray, setResultArray] = useState([]);
@@ -38,6 +22,24 @@ export const StateContext = ({ children }) => {
   const [gamesPlayed, setGamesPlayed] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [userDataToUpdate, setUserDataToUpdate] = useState({});
+
+  const [userCreatedMsg, setUserCreatedMsg] = useState(false)
+
+  const backendUrl = 'https://world-capitals.herokuapp.com/api'
+
+  const fetchQuestions = () => {
+    axios
+      .get(`${backendUrl}/questions`)
+      .then((res) => {
+        questions = res.data;
+      })
+      .then(() => {
+        setSelectedQuestions(questionToPlay(getRandomQuestions(), questions));
+      })
+      .catch((err) => {
+        console.log("ERROR!!!");
+      });
+  };
 
   const percent = () => {
     setProgressBarWidth(progressBarWidth + 5);
@@ -64,6 +66,8 @@ export const StateContext = ({ children }) => {
         gamesPlayed,
         correctAnswers,
         userDataToUpdate,
+        userCreatedMsg,
+        backendUrl,
         setToken,
         setUserId,
         setName,
@@ -80,6 +84,7 @@ export const StateContext = ({ children }) => {
         setLevelSelected,
         fetchQuestions,
         setUserDataToUpdate,
+        setUserCreatedMsg,
       }}
     >
       {children}

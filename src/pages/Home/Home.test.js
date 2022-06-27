@@ -7,13 +7,6 @@ import { render,screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect"
 
 
-// test("buttons renders correctly if not login", () =>{
-// 	render(<Home/>)
-// 	const buttons = screen.getAllByRole("button")
-// 	expect(buttons).toHaveLength(2)
-
-// })
-
 test("buttons renders correctly if not login", () =>{
 	render( <BrowserRouter>
 		<React.StrictMode>

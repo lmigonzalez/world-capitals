@@ -3,12 +3,20 @@ import axios from "axios";
 import "./Leaderboards.css";
 
 import Spinner from "../../components/Spinner";
+import { useStateContext } from "../../context/StateContext";
 
 function Leaderboards() {
+
+  const {
+   backendUrl,
+
+  } = useStateContext();
 
   useEffect(() =>{
     getUsers()
   }, [])
+
+  
 
   const [usersArray, setUsersArray] = useState([])
  
@@ -16,7 +24,7 @@ function Leaderboards() {
   const getUsers = () =>{
 
  
-      axios.get('http://localhost:3000/api/users')
+      axios.get(`${backendUrl}/users`)
       .then(res=>{
         setUsersArray(res.data)
      
