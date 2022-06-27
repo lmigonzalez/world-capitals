@@ -1,0 +1,39 @@
+// import React from "react";
+// import { StateContext } from "../../context/StateContext";
+// import { BrowserRouter } from "react-router-dom";
+// import Quiz from "./Quiz";
+
+// import { render, screen, fireEvent } from "@testing-library/react";
+// import "@testing-library/jest-dom/extend-expect";
+
+// const MockQuiz = () => {
+//   return (
+//     <BrowserRouter>
+//       <React.StrictMode>
+//         <StateContext>
+//           <Quiz />
+//         </StateContext>
+//       </React.StrictMode>
+//     </BrowserRouter>
+//   );
+// };
+
+// describe("Quiz Components", () => {
+
+//   it("h2 render correctly", async () => {
+//     render(<MockQuiz/>);
+
+//     const h2 = await screen.findByRole("h2");
+//     expect(h2).toBeInTheDocument();
+
+
+//   });
+
+//   it("all 6 buttons render correctly", async () => {
+//     render(<MockQuiz/>);
+
+//     const buttons = await screen.findAllByRole("button");
+//     expect(buttons).toHaveLength(6)
+
+//   });
+// });

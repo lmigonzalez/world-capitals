@@ -38,7 +38,7 @@ function App() {
   } = useStateContext();
 
   useEffect(() => {
-    setProgressBarWidth(20);
+    setProgressBarWidth(5);
     getRandomQuestions();
     fetchQuestions();
     checkIfUserExist();

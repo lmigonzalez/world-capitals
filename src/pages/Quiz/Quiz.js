@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 
 import ProgressBar from "../../components/ProgressBar";
 
+
 import { getRandomOptions } from "../../utilities/Utilities";
 
 import { useStateContext } from "../../context/StateContext";
@@ -13,7 +14,6 @@ import { useStateContext } from "../../context/StateContext";
 function Quiz() {
   const navigate = useNavigate();
 
-  
   const {
     selectedQuestions,
     setProgressBarWidth,
@@ -21,10 +21,8 @@ function Quiz() {
     resultArray,
     setResultArray,
     timerNum,
-    levelSelected,
-  } = useStateContext();
 
-  
+  } = useStateContext();
 
   const [optionSelected, setOptionSelected] = useState(null);
   const [num, setNum] = useState(timerNum);
@@ -33,23 +31,18 @@ function Quiz() {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [timer, setTimer] = useState();
 
-  
- 
-
   useEffect(() => {
     setResultArray([]);
-    countDown();
+    // countDown();
   }, []);
 
   useEffect(() => {
-    countDown();
+    // countDown();
   }, [num]);
 
   useEffect(() => {
     randomOption();
   }, [questionNum]);
-
-
 
   const countDown = () => {
     if (num > 0) {
@@ -68,7 +61,7 @@ function Quiz() {
 
   const handleExit = () => {
     navigate("/");
-    setProgressBarWidth(20);
+    setProgressBarWidth(5);
   };
 
   const randomOption = () => {
@@ -96,9 +89,9 @@ function Quiz() {
     setResultArray([...resultArray, obj]);
 
     setOptionSelected(null);
-    if (questionNum === 4) {
+    if (questionNum === 19) {
       navigate("/result");
-      setProgressBarWidth(20);
+      setProgressBarWidth(5);
       return;
     }
 
@@ -119,7 +112,6 @@ function Quiz() {
     setOptionSelected(name);
     setButtonDisabled(false);
   };
-
 
   return (
     <section className="quiz-container">
@@ -159,12 +151,20 @@ function Quiz() {
           </Button>
         </div>
         <div className="control-buttons">
-          <Button onClick={handleExit}>Exit</Button>
-          <Button onClick={nextQuestion} disabled={buttonDisabled}>
+        <Button onClick={handleExit} className="exit-questions">
+            Exit
+          </Button>
+          <Button
+            onClick={nextQuestion}
+            disabled={buttonDisabled}
+            className="next-question"
+          >
             Next
           </Button>
+          
         </div>
       </div>
+
     </section>
   );
 }

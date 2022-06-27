@@ -19,6 +19,10 @@
 
 .App {
   text-align: center;
+  position: relative;
+  padding-bottom: 10rem;
+  background-color: var(--light-green);
+  min-height: 100vh;
 }
 
 h1{

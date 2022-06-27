@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./Leaderboards.css";
 
+import Spinner from "../../components/Spinner";
+
 function Leaderboards() {
 
   useEffect(() =>{
@@ -12,24 +14,28 @@ function Leaderboards() {
  
 
   const getUsers = () =>{
-    axios.get('http://localhost:3000/api/users')
-    .then(res=>{
-      setUsersArray(res.data)
-   
-      
-    })
-    .catch(err=>{
-      console.log(err)
-      
-    })
+
+ 
+      axios.get('http://localhost:3000/api/users')
+      .then(res=>{
+        setUsersArray(res.data)
+     
+        
+      })
+      .catch(err=>{
+        console.log(err)
+        
+      })
+
+  
   }
+
   
 
   return (
     <section className="leaderboards-container">
-
       <h1>Leaderboards</h1>
-      <table className="leaderboards-table">
+      {usersArray.length <= 0? <Spinner/> : <table className="leaderboards-table">
         <thead>
           <tr>
             <th>Rank</th>
@@ -49,7 +55,8 @@ function Leaderboards() {
               );
             })}
         </tbody>
-      </table>
+      </table>}
+      
     </section>
   );
 }

@@ -5,6 +5,7 @@ import {useStateContext} from '../context/StateContext'
 
 function ProgressBar() {
 	const { progressBarWidth } = useStateContext();
+	// console.log(progressBarWidth)
 	return (
 		<div className='progress-bar-container'>
 			<div className='progress-bar' style={{width: `${progressBarWidth}%`}}></div>

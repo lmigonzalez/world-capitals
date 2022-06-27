@@ -1,0 +1,49 @@
+.spinner-content{
+	position: relative;
+	margin: 10rem auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 15rem;
+
+}
+
+.spinner{
+	/* background-color: #73777B; */
+	background: rgb(0,0,0);
+	background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(83,191,157,1) 100%);
+
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	
+}
+/* animation: name duration timing-function delay iteration-count direction fill-mode; */
+
+.spinner1{
+	animation: spinner1 3s infinite;
+}
+
+.spinner2{
+	animation: spinner1 3s 0.5s infinite;
+}
+
+.spinner3{
+	animation: spinner1 3s 1s infinite;
+}
+
+.spinner4{
+	animation: spinner1 3s 1.5s infinite;
+}
+
+@keyframes spinner1{
+	0%{
+		transform: scale(1);
+	}
+	50%{
+		transform: scale(0.5);
+	}
+	100%{
+		transform: scale(1);
+	}
+}

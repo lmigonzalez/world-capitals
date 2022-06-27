@@ -6,6 +6,8 @@ import { Button } from "react-bootstrap";
 
 import { useStateContext } from "../../context/StateContext";
 
+import Spinner from "../../components/Spinner";
+
 function Home() {
   const navigate = useNavigate();
   const {

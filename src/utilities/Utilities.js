@@ -3,7 +3,7 @@
 export const getRandomQuestions = () =>{
 	const randomQuestions = []
 
-	while(randomQuestions.length < 5){
+	while(randomQuestions.length < 20){
 		let question = Math.floor(Math.random() * 192)
 		if(randomQuestions.indexOf(question) === -1) randomQuestions.push(question)
 	}

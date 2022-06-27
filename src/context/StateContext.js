@@ -26,7 +26,7 @@ export const StateContext = ({ children }) => {
       });
   };
 
-  const [progressBarWidth, setProgressBarWidth] = useState(20);
+  const [progressBarWidth, setProgressBarWidth] = useState(5);
   const [resultArray, setResultArray] = useState([]);
   const [levelSelected, setLevelSelected] = useState(null);
   const [token, setToken] = useState(null);
@@ -40,10 +40,11 @@ export const StateContext = ({ children }) => {
   const [userDataToUpdate, setUserDataToUpdate] = useState({});
 
   const percent = () => {
-    setProgressBarWidth(progressBarWidth + 20);
+    setProgressBarWidth(progressBarWidth + 5);
   };
 
   const [timerNum, setTimerNum] = useState(20);
+
 
   return (
     <Context.Provider
