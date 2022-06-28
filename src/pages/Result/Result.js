@@ -18,6 +18,7 @@ function Result() {
 		gamesPlayed,
 		correctAnswers,
     backendUrl,
+    
   } = useStateContext();
   const navigate = useNavigate();
 

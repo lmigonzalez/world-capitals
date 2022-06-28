@@ -1,11 +1,14 @@
 .spinner-content{
-	position: relative;
-	margin: 10rem auto;
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	transform: translate(-50%, -50%);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 15rem;
 
+	
 }
 
 .spinner{

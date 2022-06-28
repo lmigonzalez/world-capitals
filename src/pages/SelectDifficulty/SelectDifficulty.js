@@ -5,6 +5,7 @@ import "./SelectDifficulty.css";
 import { useStateContext } from "../../context/StateContext";
 
 import { Button } from "react-bootstrap";
+import Spinner from "../../components/Spinner";
 
 const SelectDifficulty =()=> {
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -13,6 +14,7 @@ const SelectDifficulty =()=> {
     setLevelSelected,
     setTimerNum,
     fetchQuestions,
+    questionsReady,
   } = useStateContext();
 
   useEffect(() =>{
@@ -45,8 +47,13 @@ const SelectDifficulty =()=> {
 	navigate('/quiz')
   }
 
+  if(!questionsReady){
+    return <Spinner/>
+  }
+
   return (
     <section className="difficulty-container">
+      {questionsReady? <>
       <h2>Select the difficulty level</h2>
 
       <div className="button-container">
@@ -75,7 +82,9 @@ const SelectDifficulty =()=> {
       </div>
 	  <div className="start-button">
 	  	<Button onClick={startQuiz} disabled={buttonDisabled}>Start</Button>
-	  </div>
+	  </div> </> : <Spinner/> }
+      
+    
     </section>
   );
 }

@@ -22,23 +22,26 @@ export const StateContext = ({ children }) => {
   const [gamesPlayed, setGamesPlayed] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [userDataToUpdate, setUserDataToUpdate] = useState({});
-
   const [userCreatedMsg, setUserCreatedMsg] = useState(false)
+  const [questionsReady, setQuestionsReady] = useState(false)
 
   const backendUrl = 'https://world-capitals.herokuapp.com/api'
 
   const fetchQuestions = () => {
-    axios
+      axios
       .get(`${backendUrl}/questions`)
       .then((res) => {
         questions = res.data;
       })
       .then(() => {
         setSelectedQuestions(questionToPlay(getRandomQuestions(), questions));
+        setQuestionsReady(true)
       })
       .catch((err) => {
         console.log("ERROR!!!");
       });
+  
+    
   };
 
   const percent = () => {
@@ -68,6 +71,7 @@ export const StateContext = ({ children }) => {
         userDataToUpdate,
         userCreatedMsg,
         backendUrl,
+        questionsReady, 
         setToken,
         setUserId,
         setName,
@@ -85,6 +89,7 @@ export const StateContext = ({ children }) => {
         fetchQuestions,
         setUserDataToUpdate,
         setUserCreatedMsg,
+        setQuestionsReady,
       }}
     >
       {children}
